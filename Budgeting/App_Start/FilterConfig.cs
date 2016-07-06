@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Budgeting
+namespace Budgeting.Web
 {
     public class FilterConfig
     {

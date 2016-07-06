@@ -9,7 +9,7 @@ namespace Budgeting.Entity
     //TODO: Build a repository interface for the DB Context to implement
     //TODO: Build a unit of work interface for it to use to get the data from somewhere
 
-    public class ModelContext : DbContext //, IUnitOfWork
+    public class ModelContext : DbContext
     {
         // Your context has been configured to use a 'ModelContext' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
@@ -25,19 +25,16 @@ namespace Budgeting.Entity
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public DbSet<UserAccount> UserAccounts { get; set; }
-        public DbSet<Period> Periods { get; set; }
-        public DbSet<Item> Items { get; set; }
-
-        public void Commit()
-        {
-            SaveChanges();
-        }
+        public virtual DbSet<UserAccount> UserAccounts { get; set; }
+        public virtual DbSet<Period> Periods { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        
     }
     
     public class UserAccount
     {
         public int UserAccountId { get; set; }
+
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }

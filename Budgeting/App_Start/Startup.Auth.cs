@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using Budgeting.Models;
+using Budgeting.Web.Models;
 
-namespace Budgeting
+namespace Budgeting.Web
 {
     public partial class Startup
     {

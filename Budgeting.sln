@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeting.Bus", "Budgeting.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeting.Bus.Test", "Budgeting.Bus.Test\Budgeting.Bus.Test.csproj", "{CC8F02CB-2654-478E-873A-6CAC0E2017F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgeting.Core", "Budgeting.Core\Budgeting.Core.csproj", "{A0BD886F-4765-4966-B049-DD99FBB854BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CC8F02CB-2654-478E-873A-6CAC0E2017F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC8F02CB-2654-478E-873A-6CAC0E2017F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC8F02CB-2654-478E-873A-6CAC0E2017F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BD886F-4765-4966-B049-DD99FBB854BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BD886F-4765-4966-B049-DD99FBB854BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BD886F-4765-4966-B049-DD99FBB854BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BD886F-4765-4966-B049-DD99FBB854BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

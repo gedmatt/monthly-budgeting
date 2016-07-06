@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Budgeting.Models;
+using Budgeting.Web.Models;
 
-namespace Budgeting.Controllers
+namespace Budgeting.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller

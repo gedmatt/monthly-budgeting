@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F430681-CE79-45FB-9B31-331E83FA702D}</ProjectGuid>
+    <ProjectGuid>{A0BD886F-4765-4966-B049-DD99FBB854BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Budgeting.Bus</RootNamespace>
-    <AssemblyName>Budgeting.Bus</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Budgeting.Core</RootNamespace>
+    <AssemblyName>Budgeting.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,16 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,28 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemBO.cs" />
-    <Compile Include="PeriodBO.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserAccountBO.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Budgeting.Core\Budgeting.Core.csproj">
-      <Project>{a0bd886f-4765-4966-b049-dd99fbb854bf}</Project>
-      <Name>Budgeting.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Budgeting.Entity\Budgeting.Entity.csproj">
-      <Project>{2a2c2f73-009f-4051-9512-a09505607eb6}</Project>
-      <Name>Budgeting.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Budgeting.ViewModel\Budgeting.ViewModel.csproj">
-      <Project>{a564de5e-9bf9-4bb9-b8ad-4fc2c777c26a}</Project>
-      <Name>Budgeting.ViewModel</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

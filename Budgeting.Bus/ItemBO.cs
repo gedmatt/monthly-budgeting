@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Budgeting.Bus
 {
-    public class Period
+    public class ItemBO
     {
-        public Period(ModelContext context, int periodId)
+        public ItemBO(ModelContext context, int itemId)
         {
 
         }
