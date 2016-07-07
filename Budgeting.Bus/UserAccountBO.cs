@@ -9,18 +9,27 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+//Review this for MVC Auth Login: http://benfoster.io/blog/aspnet-identity-stripped-bare-mvc-part-1
+
 namespace Budgeting.Bus
 {
     public class UserAccountBO
     {
-        protected int _userId;
-        protected int _username;
-        protected int _accountId;
+        public int UserAccountId { get; set; }
+        public string UserName { get; set; }
+
+        public bool IsAuthenticated { get; set; }
 
         public UserAccountBO(ModelContext context, string username, string password)
         {
-            //TODO: Instantiate based on whether the username and salted password match up???
+            IsAuthenticated = false;
+
+            //Instantiate based on whether the username and salted password match up???
             var user = context.UserAccounts.SingleOrDefault(x => x.UserName == username);
+            if(user == null)
+            {
+                throw new UserNotFoundException("Incorrect username");
+            }
 
             var storedPassword = user.Password;
             var salt = user.Salt;
@@ -29,12 +38,17 @@ namespace Budgeting.Bus
 
             if(storedPassword == encryptedPassword)
             {
-                //Allow creation of object
-            }else
+                UserAccountId = user.UserAccountId;
+                UserName = user.UserName;
+                IsAuthenticated = true;
+            }
+            else
             {
                 throw new UserNotFoundException("Incorrect password");
             }
         }
+        
+        //public IdentityUser 
 
         public static IList<UserAccountViewModel> GetUserAccounts(ModelContext context)
         {
