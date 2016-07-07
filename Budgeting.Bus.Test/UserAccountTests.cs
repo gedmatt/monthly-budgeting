@@ -49,25 +49,24 @@ namespace Budgeting.Bus.Test
         [TestMethod]
         public void UserAccountBO_Constructor_CreatesObject()
         {
-            //TODO: Create properties on the BO and test them...
             InitialiseData();
 
             var account = new UserAccountBO(_mockContext.Object, "AAA", "mypassword");
 
-            //Assert.AreEqual(1, account.)
+            Assert.AreEqual(1, account.UserAccountId, "account.UserAccountId");
+            Assert.AreEqual("AAA", account.UserName, "account.UserName");
+            Assert.AreEqual(true, account.IsAuthenticated, "account.IsAuthenticated");
         }
 
         [TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
         public void UserAccountBO_Constructor_ThrowsUserNotFoundException()
         {
-            //TODO: Create set of exceptions in new core assembly...
             InitialiseData();
 
             var account = new UserAccountBO(_mockContext.Object, "AAA", "adifferentpassword");
         }
-
-
+        
         [TestMethod]
         public void UserAccountBO_EncryptPasswordWithSalt_Test()
         {
