@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 //Review this for MVC Auth Login: http://benfoster.io/blog/aspnet-identity-stripped-bare-mvc-part-1
+//And this as well: http://stackoverflow.com/questions/4029369/asp-net-mvc-authentication-cookie-issue
 
 namespace Budgeting.Bus
 {
