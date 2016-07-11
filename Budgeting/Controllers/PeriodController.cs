@@ -11,8 +11,14 @@ namespace Budgeting.Web.Controllers
         // GET: Period
         public ActionResult Index()
         {
-            //TODO: Get list of periods, make it re-orderable in the business object
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult PeriodGetList()
+        {
+            //TODO: Get list of periods, make it re-orderable in the business object
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
     }
 }
