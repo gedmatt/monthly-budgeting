@@ -5,10 +5,7 @@ namespace Budgeting.Entity
     using System.Data.Entity;
     using System.Collections.Generic;
     using System.Linq;
-
-    //TODO: Build a repository interface for the DB Context to implement
-    //TODO: Build a unit of work interface for it to use to get the data from somewhere
-
+    
     public class ModelContext : DbContext
     {
         // Your context has been configured to use a 'ModelContext' connection string from your application's 
@@ -20,6 +17,7 @@ namespace Budgeting.Entity
         public ModelContext()
             : base("name=ModelContext")
         {
+            Database.SetInitializer<ModelContext>(new CreateDatabaseIfNotExists<ModelContext>());
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -34,7 +32,6 @@ namespace Budgeting.Entity
     public class UserAccount
     {
         public int UserAccountId { get; set; }
-
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }

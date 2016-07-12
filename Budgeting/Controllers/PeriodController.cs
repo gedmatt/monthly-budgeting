@@ -1,4 +1,5 @@
 ﻿using Budgeting.ViewModel;
+using Budgeting.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,12 @@ namespace Budgeting.Web.Controllers
         // GET: Period
         public ActionResult Index()
         {
+            var context = new ModelContext();
             return View();
         }
 
         [HttpGet]
-        public JsonResult PeriodGetList()
+        public JsonResult GetPeriodList()
         {
             //TODO: Get list of periods, make it re-orderable in the business object
             return Json(null, JsonRequestBehavior.AllowGet);
