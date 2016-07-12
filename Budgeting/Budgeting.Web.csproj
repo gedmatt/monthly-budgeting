@@ -16,7 +16,7 @@
     <RootNamespace>Budgeting.Web</RootNamespace>
     <AssemblyName>Budgeting.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <MvcBuildViews>true</MvcBuildViews>
+    <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -1025,11 +1025,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Period\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Item\" />
-    <Folder Include="Views\Period\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1043,6 +1043,10 @@
     <ProjectReference Include="..\Budgeting.Entity\Budgeting.Entity.csproj">
       <Project>{2a2c2f73-009f-4051-9512-a09505607eb6}</Project>
       <Name>Budgeting.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Budgeting.ViewModel\Budgeting.ViewModel.csproj">
+      <Project>{a564de5e-9bf9-4bb9-b8ad-4fc2c777c26a}</Project>
+      <Name>Budgeting.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

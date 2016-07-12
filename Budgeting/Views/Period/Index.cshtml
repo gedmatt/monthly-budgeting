@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create Period</h2>
+
+<div id="content" ng-controller="PeriodController">
+    <span ng-show="isViewLoading" class="viewLoading">
+        <img src="~/Content/images/ng-loader.gif" /> loading...
+    </span>
+    <div ng-class="result">{{message}}</div>
+    <hr />
+    <form name="frmPeriod" novalidate>
+        <div>
+            <input type="hidden" ng-model="periodModel.PeriodId" name="periodId" />
+        </div>
+        <div>
+            <label for="email">Period Title</label>
+            <input type="text" ng-model="periodModel.Title" name="ptitle" placeholder="" required ng-minlength="4" />
+            <span class="error" ng-show="(frmPeriod.$dirty||submitted) && frmPeriod.ptitle.$error.required">Period title is required!</span>
+            <span class="error" ng-show="frmPeriod.$dirty && frmPeriod.ptitle.$error.minlength">Minimum length required is 5</span>
+        </div>
+        <div>
+            <label for="email">Period Start Date</label>
+            <input type="date" ng-model="periodModel.StartDate" name="pstartdate" placeholder="" required />
+            <span class="error" ng-show="(frmPeriod.$dirty ||submitted) && frmPeriod.pstartdate.$error.required">Start date is required!</span>
+        </div>
+        <div>
+            <label for="email">Period Starting Balance</label>
+            <input type="number" ng-model="periodModel.StartingBalance" name="pstartingbalance" placeholder="" required min="0" />
+            <span class="error" ng-show="(frmPeriod.$dirty ||submitted) && frmPeriod.pstartingbalance.$error.required">Starting balance is required!</span>
+        </div>
+        <div class="btn">
+            <input type="submit" value="Save" ng-click="savePeriod()" ng-disabled="frmPeriod.$invalid">
+            <input type="submit" value="Update" ng-click="updatePeriod()" ng-disabled="frmPeriod.$invalid">
+        </div>
+    </form>
+    <hr />
+
+    <h2>All Periods</h2>
+    <table class="table table-striped">
+        <tr ng-repeat="custModel in ListCustomer">
+            <td>{{periodModel.PeriodId}}</td>
+            <td>{{periodModel.Title}}</td>
+            <td>{{periodModel.StartDate}}</td>
+            <td>{{periodModel.StartingBalance}}</td>
+            <td>
+                <a href="#" ng-click="getPeriod(periodModel)" title="Edit Record">
+                    <img src="~/Content/images/edit.png" />
+                </a><a href="#" ng-click="deletePeriod(periodModel)" title="Delete Record">
+                    <img src="~/Content/images/erase.png" />
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@section JavaScript{
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/ScriptsNg/PeriodController.js"></script>
+}
