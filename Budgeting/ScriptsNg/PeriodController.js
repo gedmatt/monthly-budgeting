@@ -1,7 +1,7 @@
 ﻿angular.module('budgetingApp', [])
 .controller('PeriodController', function ($scope, $http, $location, $window) {
     
-    $scope.itemModel = {};
+    $scope.periodModel = {};
     $scope.message = '';
     $scope.result = "color-default";
     $scope.isViewLoading = false;

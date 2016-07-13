@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome to all your stuff!</h2>
+
+<div id="content" ng-controller="HomeController">
+    <span ng-show="isViewLoading" class="viewLoading">
+        <img src="~/Content/images/ng-loader.gif" /> loading...
+    </span>
+    <div ng-class="result">{{message}}</div>
+    <hr />
+</div>
+
+@section JavaScript{
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/ScriptsNg/HomeController.js"></script>
+}

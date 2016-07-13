@@ -1,29 +1,28 @@
 ﻿angular.module('budgetingApp', [])
-.controller('ItemController', function ($scope, $http, $location, $window) {
-
-    $scope.itemModel = {};
-    $scope.message = '';
+.controller('HomeController', function ($scope, $http, $location, $window) {
+    alert('arse2');
+    $scope.homeModel = {};
+    $scope.message = 'Nothing to see here!';
     $scope.result = "color-default";
-    $scope.isViewLoading = false;
-    $scope.ListItem = null;
+    $scope.isViewLoading = true;
+    
+    getHomeInfo();
 
-    getItemList();
-
-    //****** Get All Items For This Period ******
-    function getItemList() {
+    function getHomeInfo() {
         //debugger;
-        $http.get('/Item/GetItemList')
+        $http.get('/Home/GetHomeInfo')
             .success(function (data, status, headers, config) {
-                $scope.ListItem = data;
+                $scope.homeModel = data;
+                $scope.isViewLoading = false;
             })
             .error(function (data, status, headers, config) {
                 $scope.message = 'Unexpected Error while loading data!!';
                 $scope.result = "color-red";
                 console.log($scope.message);
+                $scope.isViewLoading = false;
             });
     };
-
-})
+});
 .config(function ($locationProvider) {
     $locationProvider.html5Mode(true);
 });
