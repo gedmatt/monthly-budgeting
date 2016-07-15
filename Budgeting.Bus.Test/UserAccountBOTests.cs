@@ -10,7 +10,7 @@ using System.Linq;
 namespace Budgeting.Bus.Test
 {
     [TestClass]
-    public class UserAccountTests
+    public class UserAccountBOTests
     {
         private Mock<ModelContext> _mockContext;
 

@@ -10,7 +10,7 @@ using System.Linq;
 namespace Budgeting.Bus.Test
 {
     [TestClass]
-    public class ItemTests
+    public class ItemBOTests
     {
         [TestMethod]
         public void TestMockingEntityFramework()

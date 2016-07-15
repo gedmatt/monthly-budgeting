@@ -1,6 +1,6 @@
 ﻿angular.module('budgetingApp', [])
 .controller('HomeController', function ($scope, $http, $location, $window) {
-    alert('arse2');
+
     $scope.homeModel = {};
     $scope.message = 'Nothing to see here!';
     $scope.result = "color-default";
@@ -22,7 +22,7 @@
                 $scope.isViewLoading = false;
             });
     };
-});
+})
 .config(function ($locationProvider) {
     $locationProvider.html5Mode(true);
 });

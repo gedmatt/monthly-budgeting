@@ -14,21 +14,39 @@
         <div>
             <input type="hidden" ng-model="periodModel.PeriodId" name="periodId" />
         </div>
-        <div>
-            <label for="email">Period Title</label>
-            <input type="text" ng-model="periodModel.Title" name="ptitle" placeholder="" required ng-minlength="4" />
-            <span class="error" ng-show="(frmPeriod.$dirty||submitted) && frmPeriod.ptitle.$error.required">Period title is required!</span>
-            <span class="error" ng-show="frmPeriod.$dirty && frmPeriod.ptitle.$error.minlength">Minimum length required is 5</span>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="title">Period Title</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" ng-model="periodModel.Title" name="ptitle" placeholder="" required ng-minlength="4" />
+            </div>
+            <div class="col-sm-2">
+                <span class="error" ng-show="(frmPeriod.$dirty||submitted) && frmPeriod.ptitle.$error.required">Period title is required!</span>
+                <span class="error" ng-show="frmPeriod.$dirty && frmPeriod.ptitle.$error.minlength">Minimum length required is 5</span>
+            </div>
         </div>
-        <div>
-            <label for="email">Period Start Date</label>
-            <input type="date" ng-model="periodModel.StartDate" name="pstartdate" placeholder="" required />
-            <span class="error" ng-show="(frmPeriod.$dirty ||submitted) && frmPeriod.pstartdate.$error.required">Start date is required!</span>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="startdate">Start Date</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="date" ng-model="periodModel.StartDate" name="pstartdate" placeholder="" required />
+            </div>
+            <div class="col-sm-2">
+                <span class="error" ng-show="(frmPeriod.$dirty ||submitted) && frmPeriod.pstartdate.$error.required">Start date is required!</span>
+            </div>
         </div>
-        <div>
-            <label for="email">Period Starting Balance</label>
-            <input type="number" ng-model="periodModel.StartingBalance" name="pstartingbalance" placeholder="" required min="0" />
-            <span class="error" ng-show="(frmPeriod.$dirty ||submitted) && frmPeriod.pstartingbalance.$error.required">Starting balance is required!</span>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="startingbalance">Starting Balance</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="number" ng-model="periodModel.StartingBalance" name="pstartingbalance" placeholder="" required min="0" />
+            </div>
+            <div class="col-sm-2">
+                <span class="error" ng-show="(frmPeriod.$dirty ||submitted) && frmPeriod.pstartingbalance.$error.required">Starting balance is required!</span>
+            </div>
         </div>
         <div class="btn">
             <input type="submit" value="Save" ng-click="savePeriod()" ng-disabled="frmPeriod.$invalid">
