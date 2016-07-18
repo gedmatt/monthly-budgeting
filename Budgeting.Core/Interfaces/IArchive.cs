@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Budgeting.Core.Interfaces
 {
-    public interface ISave
+    public interface IArchive
     {
-        DateTime CreatedDate { get; }
-        DateTime? LastModifiedByDate { get; }
-        void Save();
+        DateTime? ArchivedDate { get; }
+        void Archive();
+        void Unarchive();
     }
 }

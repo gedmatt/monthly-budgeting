@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\ObjectNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Interfaces\IArchive.cs" />
     <Compile Include="Interfaces\ISave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

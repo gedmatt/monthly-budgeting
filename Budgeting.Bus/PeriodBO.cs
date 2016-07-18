@@ -12,29 +12,98 @@ using System.Threading.Tasks;
 
 namespace Budgeting.Bus
 {
-    public class PeriodBO : ISave
+    public class PeriodBO : ISave, IArchive
     {
-        public int PeriodId { get; set; }
-        public string Title { get; set; }
-        public DateTime StartDate { get; set; }
-        public decimal StartingBalance { get; set; }
+        protected Period _periodEntity;
+        public int PeriodId
+        {
+            get { return _periodEntity.PeriodId; }
+        }
+        public string Title
+        {
+            get { return _periodEntity.Title; }
+        }
+        public DateTime StartDate
+        {
+            get { return _periodEntity.StartDate; }
+        }
+        public decimal StartingBalance
+        {
+            get { return _periodEntity.StartingBalance; }
+        }
+        public decimal UserAccountId
+        {
+            get { return _periodEntity.UserAccountId; }
+        }
+
+        public DateTime CreatedDate
+        {
+            get { return _periodEntity.CreatedDate; }
+        }
+        public DateTime? LastModifiedByDate
+        {
+            get { return _periodEntity.LastModifiedDate; }
+        }
+        public DateTime? ArchivedDate
+        {
+            get { return _periodEntity.ArchivedDate; }
+        }
 
         public PeriodBO(ModelContext context, int periodId)
         {
-            var period = context.Periods.SingleOrDefault(x => x.PeriodId == periodId);
-            if (period == null)
+            _periodEntity = context.Periods.SingleOrDefault(x => x.PeriodId == periodId);
+            if (_periodEntity == null)
             {
                 throw new ObjectNotFoundException("Id not found in the database");
             }
-            PeriodId = period.PeriodId;
-            Title = period.Title;
-            StartDate = period.StartDate;
-            StartingBalance = period.StartingBalance;
         }
 
-        public void Save(int userId)
+        public PeriodBO(ModelContext context, PeriodViewModel periodVM)
         {
-            //TODO: Stuff here!
+            if (periodVM.PeriodId > 0)
+            {
+                _periodEntity = context.Periods.SingleOrDefault(x => x.PeriodId == periodVM.PeriodId);
+
+                if (_periodEntity == null)
+                {
+                    throw new ObjectNotFoundException("Id not found in the database");
+                }
+            }else
+            {
+                _periodEntity = new Period();
+            }
+            _periodEntity.Title = periodVM.Title;
+            _periodEntity.StartDate = periodVM.StartDate;
+            _periodEntity.StartingBalance = periodVM.StartingBalance;
+            _periodEntity.UserAccountId = periodVM.UserAccountId;
+        }
+
+        public void Save()
+        {
+            if(_periodEntity.CreatedDate == DateTime.MinValue)
+            {
+                _periodEntity.CreatedDate = DateTime.Now;
+            }
+            else
+            {
+                _periodEntity.LastModifiedDate = DateTime.Now;
+            }
+        }
+
+        public void Archive()
+        {
+            if (!_periodEntity.ArchivedDate.HasValue)
+            {
+                _periodEntity.ArchivedDate = DateTime.Now;
+            }
+        }
+
+        public void Unarchive()
+        {
+            if (_periodEntity.ArchivedDate.HasValue)
+            {
+                _periodEntity.ArchivedDate = null;
+            }
         }
     }
 }

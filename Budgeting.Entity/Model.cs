@@ -1,8 +1,9 @@
 namespace Budgeting.Entity
 {
-    using Budgeting.Entity.Interfaces;
     using System;
     using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Collections.Generic;
     using System.Linq;
     
@@ -14,6 +15,9 @@ namespace Budgeting.Entity
         // 
         // If you wish to target a different database and/or database provider, modify the 'Model' 
         // connection string in the application configuration file.
+
+        //http://www.codeproject.com/Articles/813912/Create-Primary-Key-using-Entity-Framework-Code-Fir
+
         public ModelContext()
             : base("name=ModelContext")
         {
@@ -36,23 +40,36 @@ namespace Budgeting.Entity
         public string Password { get; set; }
         public string Salt { get; set; }
         public virtual List<Period> Periods {get; set;}
+        public DateTime CreatedDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+        public DateTime? ArchivedDate { get; set; }
     }
 
     public class Period
     {
         public int PeriodId { get; set; }
+
+        [Key]
         public int UserAccountId { get; set; }
         public string Title { get; set; }
         public DateTime StartDate { get; set; }
         public Decimal StartingBalance { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+        public DateTime? ArchivedDate { get; set; }
     }
 
     public class Item
     {
         public int ItemId { get; set; }
+
+        [Key]
         public int PeriodId { get; set; }
         public string ItemDate { get; set; }
         public string Description { get; set; }
         public Decimal Amount { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+        public DateTime? ArchivedDate { get; set; }
     }
 }
