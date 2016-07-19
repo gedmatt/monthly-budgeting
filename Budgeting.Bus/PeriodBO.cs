@@ -105,5 +105,19 @@ namespace Budgeting.Bus
                 _periodEntity.ArchivedDate = null;
             }
         }
+
+        public static IQueryable<PeriodViewModel> GetPeriodList(ModelContext context, int userAccountId)
+        {
+            var periods = context.Periods.Where(x => x.UserAccountId == userAccountId && !x.ArchivedDate.HasValue);
+            return (from p in periods
+                    select new PeriodViewModel
+                    {
+                        PeriodId = p.PeriodId,
+                        Title = p.Title,
+                        StartDate = p.StartDate,
+                        StartingBalance = p.StartingBalance,
+                        UserAccountId = p.UserAccountId
+                    });
+        }
     }
 }

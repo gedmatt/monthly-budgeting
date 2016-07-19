@@ -19,9 +19,10 @@ namespace Budgeting.Bus.Test
         {
             var data = new List<Period>
             {
-                new Period { PeriodId = 1, Title  = "First Period", StartDate = DateTime.Parse("01 July 2016"), StartingBalance = 100, CreatedDate = DateTime.Parse("01 June 2016") },
-                new Period { PeriodId = 2, Title  = "Second Period", StartDate = DateTime.Parse("01 August 2016"), StartingBalance = 200, CreatedDate = DateTime.Parse("01 May 2016") },
-                new Period { PeriodId = 3, Title  = "Third Period", StartDate = DateTime.Parse("01 September 2016"), StartingBalance = 200, CreatedDate = DateTime.Parse("01 April 2016"), ArchivedDate = DateTime.Parse("02 April 2016") }
+                new Period { PeriodId = 1, Title  = "First Period", StartDate = DateTime.Parse("01 July 2016"), StartingBalance = 100, UserAccountId = 1, CreatedDate = DateTime.Parse("01 June 2016") },
+                new Period { PeriodId = 2, Title  = "Second Period", StartDate = DateTime.Parse("01 August 2016"), StartingBalance = 200, UserAccountId = 1, CreatedDate = DateTime.Parse("01 May 2016") },
+                new Period { PeriodId = 3, Title  = "Third Period", StartDate = DateTime.Parse("01 September 2016"), StartingBalance = 200, UserAccountId = 1, CreatedDate = DateTime.Parse("01 April 2016"), ArchivedDate = DateTime.Parse("02 April 2016") },
+                new Period { PeriodId = 4, Title  = "Other Account Period", StartDate = DateTime.Parse("01 August 2016"), StartingBalance = 200, UserAccountId = 2, CreatedDate = DateTime.Parse("01 May 2016") }
             }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Period>>();
@@ -152,6 +153,16 @@ namespace Budgeting.Bus.Test
             period.Unarchive();
 
             Assert.IsNull(period.ArchivedDate, "period.ArchivedDate is not null");
+        }
+
+        [TestMethod]
+        public void PeriodBO_GetPeriodList_Returns3()
+        {
+            InitialiseData();
+
+            var list = PeriodBO.GetPeriodList(_mockContext.Object, 1).ToList();
+
+            Assert.AreEqual(2, list.Count);
         }
     }
 }

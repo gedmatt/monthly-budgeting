@@ -56,6 +56,18 @@ namespace Budgeting.Bus.Test
             Assert.AreEqual(1, account.UserAccountId, "account.UserAccountId");
             Assert.AreEqual("AAA", account.UserName, "account.UserName");
             Assert.AreEqual(true, account.IsAuthenticated, "account.IsAuthenticated");
+            Assert.AreEqual(account.CreatedDate, DateTime.MinValue, "account.CreatedDate is MinValue");
+            Assert.IsNull(account.LastModifiedByDate, "account.LastModifiedByDate is null");
+
+            //Test Save method updates CreatedDate
+            account.Save();
+
+            Assert.AreNotEqual(account.CreatedDate, DateTime.MinValue, "account.CreatedDate is now");
+
+            //Test Save method updates LastModifiedDate
+            account.Save();
+
+            Assert.IsNotNull(account.LastModifiedByDate, "account.LastModifiedByDate is not null");
         }
 
         [TestMethod]

@@ -1,4 +1,5 @@
 ﻿using Budgeting.Core.Exceptions;
+using Budgeting.Core.Interfaces;
 using Budgeting.Entity;
 using Budgeting.ViewModel;
 using System;
@@ -14,10 +15,26 @@ using System.Threading.Tasks;
 
 namespace Budgeting.Bus
 {
-    public class UserAccountBO
+    public class UserAccountBO : ISave
     {
-        public int UserAccountId { get; set; }
-        public string UserName { get; set; }
+        protected UserAccount _userEntity;
+
+        public int UserAccountId
+        {
+            get { return _userEntity.UserAccountId; }
+        }
+        public string UserName
+        {
+            get { return _userEntity.UserName; }
+        }
+        public DateTime CreatedDate
+        {
+            get { return _userEntity.CreatedDate; }
+        }
+        public DateTime? LastModifiedByDate
+        {
+            get { return _userEntity.LastModifiedDate; }
+        }
 
         public bool IsAuthenticated { get; set; }
 
@@ -26,21 +43,19 @@ namespace Budgeting.Bus
             IsAuthenticated = false;
 
             //Instantiate based on whether the username and salted password match up???
-            var user = context.UserAccounts.SingleOrDefault(x => x.UserName == username);
-            if(user == null)
+            _userEntity = context.UserAccounts.SingleOrDefault(x => x.UserName == username);
+            if(_userEntity == null)
             {
                 throw new UserNotFoundException("Incorrect username");
             }
 
-            var storedPassword = user.Password;
-            var salt = user.Salt;
+            var storedPassword = _userEntity.Password;
+            var salt = _userEntity.Salt;
 
             var encryptedPassword = EncryptPasswordWithSalt(password, salt);
 
             if(storedPassword == encryptedPassword)
             {
-                UserAccountId = user.UserAccountId;
-                UserName = user.UserName;
                 IsAuthenticated = true;
             }
             else
@@ -48,7 +63,19 @@ namespace Budgeting.Bus
                 throw new UserNotFoundException("Incorrect password");
             }
         }
-        
+
+        public void Save()
+        {
+            if (_userEntity.CreatedDate == DateTime.MinValue)
+            {
+                _userEntity.CreatedDate = DateTime.Now;
+            }
+            else
+            {
+                _userEntity.LastModifiedDate = DateTime.Now;
+            }
+        }
+
         //public IdentityUser 
 
         public static IList<UserAccountViewModel> GetUserAccounts(ModelContext context)
