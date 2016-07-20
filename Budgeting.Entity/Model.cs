@@ -21,7 +21,7 @@ namespace Budgeting.Entity
         public ModelContext()
             : base("name=ModelContext")
         {
-            Database.SetInitializer<ModelContext>(new CreateDatabaseIfNotExists<ModelContext>());
+            //Database.SetInitializer<ModelContext>(new CreateDatabaseIfNotExists<ModelContext>());
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -48,12 +48,11 @@ namespace Budgeting.Entity
     public class Period
     {
         public int PeriodId { get; set; }
-
-        [Key]
         public int UserAccountId { get; set; }
         public string Title { get; set; }
         public DateTime StartDate { get; set; }
         public Decimal StartingBalance { get; set; }
+        public UserAccount UserAccount { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
         public DateTime? ArchivedDate { get; set; }
@@ -62,12 +61,11 @@ namespace Budgeting.Entity
     public class Item
     {
         public int ItemId { get; set; }
-
-        [Key]
         public int PeriodId { get; set; }
         public string ItemDate { get; set; }
         public string Description { get; set; }
         public Decimal Amount { get; set; }
+        public Period Period { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
         public DateTime? ArchivedDate { get; set; }

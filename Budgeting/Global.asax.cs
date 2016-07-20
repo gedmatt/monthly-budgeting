@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Budgeting.Entity;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +18,13 @@ namespace Budgeting.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Database.SetInitializer<ModelContext>(new CreateDatabaseIfNotExists<ModelContext>());
+            Database.SetInitializer<ModelContext>(new DropCreateDatabaseIfModelChanges <ModelContext>());
+            using (var context = new ModelContext())
+            {
+                context.Database.Initialize(force: true);
+            }
         }
     }
 }
