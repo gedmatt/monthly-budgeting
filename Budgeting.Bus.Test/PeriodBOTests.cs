@@ -156,6 +156,22 @@ namespace Budgeting.Bus.Test
         }
 
         [TestMethod]
+        public void PeriodBO_GetViewModel_TestVmIsValid()
+        {
+            InitialiseData();
+
+            var period = new PeriodBO(_mockContext.Object, 1);
+
+            var vm = period.GetViewModel();
+
+            Assert.AreEqual(1, vm.PeriodId, "vm.PeriodId");
+            Assert.AreEqual("First Period", vm.Title, "vm.Title");
+            Assert.AreEqual(DateTime.Parse("01 July 2016"), vm.StartDate, "vm.StartDate");
+            Assert.AreEqual(100, vm.StartingBalance, "vm.StartingBalance");
+            Assert.AreEqual(1, vm.UserAccountId, "vm.UserAccountId");
+        }
+
+        [TestMethod]
         public void PeriodBO_GetPeriodList_Returns3()
         {
             InitialiseData();

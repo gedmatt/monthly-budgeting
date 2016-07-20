@@ -5,15 +5,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Budgeting.Web.Controllers
 {
     public class PeriodController : Controller
     {
-        // GET: Period
+        protected ModelContext _context;
+        
+        public PeriodController()
+        {
+            _context = new ModelContext();
+        }
+
+        public PeriodController(ModelContext context)
+        {
+            _context = context;
+        }
+
         public ActionResult Index()
         {
-            var context = new ModelContext();
             return View();
         }
 
@@ -30,8 +41,10 @@ namespace Budgeting.Web.Controllers
             object period = null;
             try
             {
+                //TODO: Do dependency injection to shove in context and unit test this
                 object[] parameters = { periodId };
-                //TODO: Period business object method to get a view model
+                var serializer = new JavaScriptSerializer();
+                //serializer.Serialize()
             }
             catch { }
             return Json(period, JsonRequestBehavior.AllowGet);

@@ -31,7 +31,7 @@ namespace Budgeting.Bus
         {
             get { return _periodEntity.StartingBalance; }
         }
-        public decimal UserAccountId
+        public int UserAccountId
         {
             get { return _periodEntity.UserAccountId; }
         }
@@ -76,6 +76,18 @@ namespace Budgeting.Bus
             _periodEntity.StartDate = periodVM.StartDate;
             _periodEntity.StartingBalance = periodVM.StartingBalance;
             _periodEntity.UserAccountId = periodVM.UserAccountId;
+        }
+
+        public PeriodViewModel GetViewModel()
+        {
+            return new PeriodViewModel
+            {
+                PeriodId = this.PeriodId,
+                Title = this.Title,
+                StartDate = this.StartDate,
+                StartingBalance = this.StartingBalance,
+                UserAccountId = this.UserAccountId
+            };
         }
 
         public void Save()
